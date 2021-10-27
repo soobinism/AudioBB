@@ -50,9 +50,10 @@ class MainActivity : AppCompatActivity(), BookListFragment.EventInterface  {
     }
 
     private fun populateBooks(numOfBooks: Int, booksList: BookList) {
-
-        for (i in 0..numOfBooks) {
-            val book = Book("Title: $i", "Author: $i")
+        val titles = resources.getStringArray(R.array.titles)
+        val authors = resources.getStringArray(R.array.authors)
+        for (i in titles.indices) {
+            val book = Book(titles[i], authors[i])
             booksList.add(book)
         }
     }

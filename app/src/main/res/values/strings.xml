@@ -1,4 +1,30 @@
 <resources>
     <string name="app_name">AudioBB</string>
     <string name="textview">TextView</string>
+
+    <string-array name="titles">
+        <item>East of Eden</item>
+        <item>Band of Brothers</item>
+        <item>Book 3</item>
+        <item>Book 4</item>
+        <item>Book 5</item>
+        <item>Book 6</item>
+        <item>Book 7</item>
+        <item>Book 8</item>
+        <item>Book 9</item>
+        <item>Book 10</item>
+    </string-array>
+
+    <string-array name="authors">
+        <item>John Steinbeck</item>
+        <item>Stephen E. Ambrose</item>
+        <item>Author 3</item>
+        <item>Author 4</item>
+        <item>Author 5</item>
+        <item>Author 6</item>
+        <item>Author 7</item>
+        <item>Author 8</item>
+        <item>Author 9</item>
+        <item>Author 10</item>
+    </string-array>
 </resources>
