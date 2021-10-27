@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/kibin/AndroidStudioProjects/AudioBB/app/src/main/res/layout-land/activity_main.xml" value="0.19895833333333332" />
+        <entry key="..\:/Users/kibin/AndroidStudioProjects/AudioBB/app/src/main/res/layout-land/small_landscape.xml" value="0.19895833333333332" />
+        <entry key="..\:/Users/kibin/AndroidStudioProjects/AudioBB/app/src/main/res/layout-land/tablet.xml" value="0.19895833333333332" />
+        <entry key="..\:/Users/kibin/AndroidStudioProjects/AudioBB/app/src/main/res/layout-sw600dp/activity_main.xml" value="0.13046448087431695" />
+        <entry key="..\:/Users/kibin/AndroidStudioProjects/AudioBB/app/src/main/res/layout/activity_main.xml" value="0.17300724637681159" />
         <entry key="..\:/Users/kibin/AndroidStudioProjects/AudioBB/app/src/main/res/layout/book_details.xml" value="0.17300724637681159" />
         <entry key="..\:/Users/kibin/AndroidStudioProjects/AudioBB/app/src/main/res/layout/book_list.xml" value="0.17300724637681159" />
         <entry key="..\:/Users/kibin/AndroidStudioProjects/AudioBB/app/src/main/res/layout/book_list_item.xml" value="0.264" />
