@@ -8,9 +8,10 @@
         android:id="@+id/bookTitleRecyclerTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/textview"
-        android:textSize="24sp"
         android:layout_margin="10dp"
+        android:text="@string/textview"
+        android:textColor="@color/black"
+        android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -18,9 +19,9 @@
         android:id="@+id/bookDetailsRecyclerTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
         android:layout_margin="10dp"
         android:text="@string/textview"
+        android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bookTitleRecyclerTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
