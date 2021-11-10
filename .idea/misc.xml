@@ -3,11 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Soobin/StudioProjects/AudioBB/app/src/main/res/layout-land/activity_main.xml" value="0.2932098765432099" />
+        <entry key="..\:/Users/Soobin/StudioProjects/AudioBB/app/src/main/res/layout-sw600dp/activity_main.xml" value="0.19740437158469945" />
         <entry key="..\:/Users/Soobin/StudioProjects/AudioBB/app/src/main/res/layout/activity_book_search.xml" value="0.17395833333333333" />
         <entry key="..\:/Users/Soobin/StudioProjects/AudioBB/app/src/main/res/layout/activity_main.xml" value="0.17395833333333333" />
         <entry key="..\:/Users/Soobin/StudioProjects/AudioBB/app/src/main/res/layout/book_details.xml" value="0.18958333333333333" />
         <entry key="..\:/Users/Soobin/StudioProjects/AudioBB/app/src/main/res/layout/book_list.xml" value="0.15989583333333332" />
-        <entry key="..\:/Users/Soobin/StudioProjects/AudioBB/app/src/main/res/layout/book_list_item.xml" value="0.17395833333333333" />
+        <entry key="..\:/Users/Soobin/StudioProjects/AudioBB/app/src/main/res/layout/book_list_item.xml" value="0.33" />
         <entry key="..\:/Users/Soobin/StudioProjects/AudioBB/app/src/main/res/layout/small_landscape.xml" value="0.17395833333333333" />
         <entry key="..\:/Users/Soobin/StudioProjects/AudioBB/app/src/main/res/layout/small_portrait.xml" value="0.17395833333333333" />
         <entry key="..\:/Users/Soobin/StudioProjects/AudioBB/app/src/main/res/layout/tablet.xml" value="0.17395833333333333" />

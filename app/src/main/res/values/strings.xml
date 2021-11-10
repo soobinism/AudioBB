@@ -28,12 +28,12 @@
         <item>Author 10</item>
     </string-array>
 
-    <string name="book_cover_photo">The cover photo of the book.</string>
+    <string name="book_cover_photo">Cover photo of the book.</string>
     <string name="book_search">Book Search</string>
     <string name="cancel">Cancel</string>
     <string name="search">Search</string>
-    <string name="search_for_book_here">Search for book here</string>
-    <string name="search_for_books">Click to search for books!</string>
-    <string name="no_matches">No matches found, search again!</string>
+    <string name="search_for_book_here">Search here</string>
+    <string name="search_for_books">Search here</string>
+    <string name="no_matches">No matches found</string>
     <string name="id_number">ID: </string>
 </resources>

@@ -3,8 +3,12 @@ package edu.temple.audiobb
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import android.net.Uri
+import com.squareup.picasso.Picasso
+import java.net.URL
 
 class BookAdapter(private var bookList: BookList, private val myOnClick : (position: Int) -> Unit) : RecyclerView.Adapter<BookAdapter.ViewHolder>() {
 

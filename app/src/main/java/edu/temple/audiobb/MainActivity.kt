@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity(), BookListFragment.EventInterface  {
         isTwoPane = findViewById<View>(R.id.fragmentContainerView2) != null
         bookViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
 
-        booksList.add(Book(0, "Click to search for books!", "", ""))
+        booksList.add(Book(0, "", "", ""))
 
         val bookListFragment = BookListFragment.newInstance(booksList)
 

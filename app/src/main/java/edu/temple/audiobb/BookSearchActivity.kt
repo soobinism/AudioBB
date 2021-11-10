@@ -72,10 +72,10 @@ class BookSearchActivity : AppCompatActivity() {
                         bookList.add(book)
                     }
                 } catch (e: JSONException) {
-                    Toast.makeText(this, "Error retrieving books!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Error retrieving books", Toast.LENGTH_SHORT).show()
                 }                                       },
             {
-                Toast.makeText(this, "Error retrieving books!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error retrieving books", Toast.LENGTH_SHORT).show()
             }
         )
         queue.add(arrayRequest)
