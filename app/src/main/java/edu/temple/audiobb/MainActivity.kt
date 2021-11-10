@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(), BookListFragment.EventInterface  {
 
     private fun populateBooks(numOfBooks: Int, booksList: BookList) {
         for (i in 0..numOfBooks) {
-            val book = Book("Title: $i", "Author: $i", i, "URL: $i")
+            val book = Book(i, "Title: $i, "Author: $i", "URL: $i")
             booksList.add(book)
         }
     }
@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity(), BookListFragment.EventInterface  {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        ViewModelProvider(this).get(BookViewModel::class.java).setBook(Book("", "", -1, ""))
+        ViewModelProvider(this).get(BookViewModel::class.java).setBook(Book(-1, "", "", ""))
 
     }
 

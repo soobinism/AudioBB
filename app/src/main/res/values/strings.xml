@@ -27,4 +27,11 @@
         <item>Author 9</item>
         <item>Author 10</item>
     </string-array>
+
+    <string name="book_cover_photo">The cover photo of the book.</string>
+    <string name="book_search">Book Search</string>
+    <string name="cancel">Cancel</string>
+    <string name="search">Search</string>
+    <string name="search_for_book_here">Search for book here</string>
+    <string name="search_for_books">Search For Books</string>
 </resources>
