@@ -14,11 +14,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 
 private const val ARG_PARAM1 = "param1"
+private const val BOOK_LIST_STATE = "edu.temple.audiobb.BookListFragment.BOOK_LIST_STATE"
 
 class BookListFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var bookList: BookList
+    private var bookList = BookList()
     private lateinit var bookViewModel: BookViewModel
     private lateinit var adapter : BookAdapter
 
@@ -29,11 +30,17 @@ class BookListFragment : Fragment() {
         }
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            bookList = it.getSerializable(ARG_PARAM1) as BookList
+            bookList = if (savedInstanceState == null) {
+                it.getSerializable(ARG_PARAM1) as BookList
+            } else {
+                savedInstanceState.getSerializable(BOOK_LIST_STATE) as BookList
+            }
         }
+
     }
 
     override fun onCreateView(
@@ -45,17 +52,14 @@ class BookListFragment : Fragment() {
         val launchSearchButton = layout.findViewById<Button>(R.id.launchSearchButton)
         launchSearchButton.setOnClickListener {
             val intent = Intent(requireContext(), BookSearchActivity::class.java)
-
             launcher.launch(intent)
         }
 
         bookViewModel = ViewModelProvider(requireActivity()).get(BookViewModel::class.java)
-
         recyclerView = layout.findViewById(R.id.bookListRecyclerView)
-
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            adapter = BookAdapter(bookList) { position ->
-            myOnClick(position)
+        adapter = BookAdapter(bookList) {
+                position ->  myOnClick(position)
         }
         recyclerView.adapter = adapter
 
@@ -80,5 +84,10 @@ class BookListFragment : Fragment() {
 
     interface EventInterface {
         fun selectionMade()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putSerializable(BOOK_LIST_STATE, bookList)
     }
 }

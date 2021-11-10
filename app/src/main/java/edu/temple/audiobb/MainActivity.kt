@@ -9,6 +9,7 @@ class MainActivity : AppCompatActivity(), BookListFragment.EventInterface  {
 
     private var isTwoPane : Boolean = false
     lateinit var bookViewModel: BookViewModel
+    private var booksList = BookList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,8 +17,8 @@ class MainActivity : AppCompatActivity(), BookListFragment.EventInterface  {
 
         isTwoPane = findViewById<View>(R.id.fragmentContainerView2) != null
         bookViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
-        val booksList = BookList()
-        populateBooks(10, booksList)
+
+        booksList.add(Book(0, "Click to search for books!", "", ""))
 
         val bookListFragment = BookListFragment.newInstance(booksList)
 
@@ -28,11 +29,10 @@ class MainActivity : AppCompatActivity(), BookListFragment.EventInterface  {
 
         if (supportFragmentManager.findFragmentById(R.id.fragmentContainerView2) is BookDetailsFragment
             && !isTwoPane) {
-            if (ViewModelProvider(this).get(BookViewModel::class.java).getBook().value?.id != -1
+            if (bookViewModel.getBook().value?.id != -1
                 && !bookViewModel.isEmpty()) {
                 selectionMade()
             }
-
         }
 
         if (savedInstanceState == null) {
@@ -41,18 +41,15 @@ class MainActivity : AppCompatActivity(), BookListFragment.EventInterface  {
                 .commit()
         }
 
-        if(isTwoPane){
+        if(isTwoPane && supportFragmentManager.findFragmentById(R.id.fragmentContainerView2) == null){
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView2, BookDetailsFragment())
+                .addToBackStack(null)
+                .commit()
+        } else if(isTwoPane) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainerView2, BookDetailsFragment())
                 .commit()
-        }
-
-    }
-
-    private fun populateBooks(numOfBooks: Int, booksList: BookList) {
-        for (i in 0..numOfBooks) {
-            val book = Book(i, "Title: $i, "Author: $i", "URL: $i")
-            booksList.add(book)
         }
     }
 
@@ -75,8 +72,6 @@ class MainActivity : AppCompatActivity(), BookListFragment.EventInterface  {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        ViewModelProvider(this).get(BookViewModel::class.java).setBook(Book(-1, "", "", ""))
-
+        bookViewModel.setBook(Book(-1, "", "", ""))
     }
-
 }

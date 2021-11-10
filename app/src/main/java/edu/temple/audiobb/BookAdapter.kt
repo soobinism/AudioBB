@@ -11,6 +11,7 @@ class BookAdapter(private var bookList: BookList, private val myOnClick : (posit
     class ViewHolder(itemView: View, val myOnClick : (position: Int) -> Unit) : RecyclerView.ViewHolder(itemView){
         val bookTitleTextView: TextView = itemView.findViewById(R.id.bookTitleRecyclerTextView)
         val bookDetailsTextView: TextView = itemView.findViewById(R.id.bookDetailsRecyclerTextView)
+        val bookIDTextView: TextView = itemView.findViewById(R.id.bookIDTextView)
 
         init {
             itemView.setOnClickListener {
@@ -27,6 +28,12 @@ class BookAdapter(private var bookList: BookList, private val myOnClick : (posit
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bookTitleTextView.text = bookList.get(position).title
         holder.bookDetailsTextView.text = bookList.get(position).author
+
+        if (bookList.get(position).id == 0) {
+            holder.bookIDTextView.text = ""
+        } else {
+            holder.bookIDTextView.text = bookList.get(position).id.toString()
+        }
     }
 
     override fun getItemCount() = bookList.size()

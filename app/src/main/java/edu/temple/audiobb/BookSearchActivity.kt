@@ -37,15 +37,16 @@ class BookSearchActivity : AppCompatActivity() {
         val searchButton = findViewById<Button>(R.id.searchButton)
         val cancelButton = findViewById<Button>(R.id.cancelButton)
 
-
         searchButton.setOnClickListener {
             startSearch()
-
             queue.addRequestFinishedListener<JsonArrayRequest> {
-                setResult(RESULT_OK, Intent().putExtra(SEARCH_RESULTS, bookList))
+                if (bookList.size() == 0) {
+                    bookList.add(Book(0, getString(R.string.no_matches), "", ""))
+                    setResult(RESULT_OK, Intent().putExtra(SEARCH_RESULTS, bookList))
+                } else
+                    setResult(RESULT_OK, Intent().putExtra(SEARCH_RESULTS, bookList))
                 finish()
             }
-
         }
 
         cancelButton.setOnClickListener {
@@ -84,6 +85,4 @@ class BookSearchActivity : AppCompatActivity() {
         super.onStop()
         queue.cancelAll(this)
     }
-
-
 }

@@ -33,5 +33,7 @@
     <string name="cancel">Cancel</string>
     <string name="search">Search</string>
     <string name="search_for_book_here">Search for book here</string>
-    <string name="search_for_books">Search For Books</string>
+    <string name="search_for_books">Click to search for books!</string>
+    <string name="no_matches">No matches found, search again!</string>
+    <string name="id_number">ID: </string>
 </resources>

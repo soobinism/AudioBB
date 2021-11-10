@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 
@@ -31,5 +32,6 @@ class BookDetailsFragment : Fragment() {
         view?.findViewById<TextView>(R.id.bookTitleTextView)?.text = book.title
         view?.findViewById<TextView>(R.id.bookDetailsTextView)?.text = book.author
     }
+
 
 }
