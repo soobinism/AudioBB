@@ -16,11 +16,11 @@ class BookSearchActivity : AppCompatActivity() {
 
         findViewById<ImageButton>(R.id.searchButton).setOnClickListener {
 
-            val url = "https://kamorris.com/lab/cis3515/search.php?term=" +
+            val coverURL = "https://kamorris.com/lab/cis3515/search.php?term=" +
                     findViewById<EditText>(R.id.searchStringEditText).text.toString()
 
             Volley.newRequestQueue(this).add(
-                JsonArrayRequest(Request.Method.GET, url, null, {
+                JsonArrayRequest(Request.Method.GET, coverURL, null, {
                     setResult(RESULT_OK,
                         Intent().putExtra(BookList.BOOKLIST_KEY, BookList().apply{populateBooks(it)})
                     )
