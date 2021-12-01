@@ -14,7 +14,7 @@ class BookDetailsFragment : Fragment() {
 
     lateinit var bookTitleTextView: TextView
     lateinit var bookDetailsTextView: TextView
-    private lateinit var coverImageView: ImageView
+    private lateinit var bookCoverImageView: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,9 +25,9 @@ class BookDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bookTitleTextView = view.findViewById(R.id.bookTitleTextView)
-        bookDetailsTextView =  view.findViewById(R.id.bookDetailsTextView)
-        coverImageView = view.findViewById(R.id.coverImageView)
+        bookTitleTextView = view.findViewById(R.id.titleTextView)
+        bookDetailsTextView =  view.findViewById(R.id.authorTextView)
+        bookCoverImageView = view.findViewById(R.id.bookCoverImageView)
 
         ViewModelProvider(requireActivity())
             .get(BookViewModel::class.java)
@@ -41,7 +41,7 @@ class BookDetailsFragment : Fragment() {
         bookTitleTextView.text = book.title
         bookDetailsTextView.text = book.author
         if (book.coverURL.isNotEmpty())
-            Picasso.get().load(book.coverURL).into(coverImageView)
+            Picasso.get().load(book.coverURL).into(bookCoverImageView)
 
     }
 

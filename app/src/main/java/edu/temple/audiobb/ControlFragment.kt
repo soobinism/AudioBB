@@ -48,7 +48,7 @@ class ControlFragment : Fragment() {
         playButton.setOnClickListener {
             val currentBook = selectedBookViewModel.getSelectedBook().value
             if (currentBook != null) {
-                nowPlayingText.text = "Title of Book: " + currentBook.title
+                nowPlayingText.text = currentBook.title
                 seekBar.max = currentBook.duration
             }
             (activity as ActionsInterface).onClickPlay(time)

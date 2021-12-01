@@ -16,8 +16,8 @@ class BookAdapter (_bookList: BookList, _onClick: (Book) -> Unit) : RecyclerView
         val authorTextView: TextView
         lateinit var book: Book
         init {
-            titleTextView = layout.findViewById(R.id.bookTitleRecyclerTextView)
-            authorTextView = layout.findViewById(R.id.bookDetailsRecyclerTextView)
+            titleTextView = layout.findViewById(R.id.titleTextView)
+            authorTextView = layout.findViewById(R.id.authorTextView)
             titleTextView.setOnClickListener {
                 onClick(book)
             }

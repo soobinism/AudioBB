@@ -7,7 +7,7 @@ import android.widget.EditText
 import android.widget.ImageButton
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
-import com.android.volley.toolbox.Volley
+import com.android.volley.toolbox.*
 
 class BookSearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +17,7 @@ class BookSearchActivity : AppCompatActivity() {
         findViewById<ImageButton>(R.id.searchButton).setOnClickListener {
 
             val url = "https://kamorris.com/lab/cis3515/search.php?term=" +
-                    findViewById<EditText>(R.id.searchEditText").text.toString()
+                    findViewById<EditText>(R.id.searchStringEditText).text.toString()
 
             Volley.newRequestQueue(this).add(
                 JsonArrayRequest(Request.Method.GET, url, null, {

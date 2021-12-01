@@ -131,7 +131,6 @@ class MainActivity : AppCompatActivity(), BookListFragment.BookSelectedInterface
     }
 
     override fun onClickPlay(progressTime: Int) {
-        Toast.makeText(this,"Clicked Play", Toast.LENGTH_SHORT).show()
         val currentBook = selectedBookViewModel.getSelectedBook().value
         if (currentBook != null) {
             if(progressTime > 0){
@@ -144,16 +143,13 @@ class MainActivity : AppCompatActivity(), BookListFragment.BookSelectedInterface
     }
 
     override fun onClickPause() {
-        Toast.makeText(this,"Clicked Pause", Toast.LENGTH_SHORT).show()
         mediaControlBinder.pause()
     }
 
     override fun onClickStop() {
-        Toast.makeText(this,"Clicked Stop", Toast.LENGTH_SHORT).show()
         mediaControlBinder.stop()
     }
 
     override fun onClickSeek() {
-        Toast.makeText(this,"Clicked Change Time", Toast.LENGTH_SHORT).show()
     }
 }
