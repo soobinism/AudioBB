@@ -74,22 +74,15 @@ class MainActivity : AppCompatActivity(), BookListFragment.BookSelectedInterface
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Adds the control fragment to the bottom fragment container
         supportFragmentManager.beginTransaction().add(R.id.activitiesView, ControlFragment()).commit()
 
         bindService(Intent(this, PlayerService::class.java), serviceConnection, BIND_AUTO_CREATE)
 
-        // Grab test data
-        //getBookList()
-
-        // If we're switching from one container to two containers
-        // clear BookDetailsFragment from container1
         if (supportFragmentManager.findFragmentById(R.id.container1) is BookDetailsFragment
             && selectedBookViewModel.getSelectedBook().value != null) {
             supportFragmentManager.popBackStack()
         }
 
-        // If this is the first time the activity is loading, go ahead and add a BookListFragment
         if (savedInstanceState == null) {
             bookListFragment = BookListFragment()
             supportFragmentManager.beginTransaction()
@@ -97,8 +90,6 @@ class MainActivity : AppCompatActivity(), BookListFragment.BookSelectedInterface
                 .commit()
         } else {
             bookListFragment = supportFragmentManager.findFragmentByTag(BOOKLISTFRAGMENT_KEY) as BookListFragment
-            // If activity loaded previously, there's already a BookListFragment
-            // If we have a single container and a selected book, place it on top
             if (isSingleContainer && selectedBookViewModel.getSelectedBook().value != null) {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.container1, BookDetailsFragment())
@@ -108,28 +99,23 @@ class MainActivity : AppCompatActivity(), BookListFragment.BookSelectedInterface
             }
         }
 
-        // If we have two containers but no BookDetailsFragment, add one to container2
         if (!isSingleContainer && supportFragmentManager.findFragmentById(R.id.container2) !is BookDetailsFragment)
             supportFragmentManager.beginTransaction()
                 .add(R.id.container2, BookDetailsFragment())
                 .commit()
 
         findViewById<ImageButton>(R.id.searchButton).setOnClickListener {
-            searchRequest.launch(Intent(this, SearchActivity::class.java))
+            searchRequest.launch(Intent(this, BookSearchActivity::class.java))
         }
 
     }
 
     override fun onBackPressed() {
-        // Backpress clears the selected book
         selectedBookViewModel.setSelectedBook(null)
         super.onBackPressed()
     }
 
     override fun bookSelected(book: Book) {
-        // Perform a fragment replacement if we only have a single container
-        // when a book is selected
-
         if (isSingleContainer) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.container1, BookDetailsFragment())
@@ -144,9 +130,6 @@ class MainActivity : AppCompatActivity(), BookListFragment.BookSelectedInterface
         unbindService(serviceConnection)
     }
 
-    // First determines if there is a book playing, if not then
-    // it loads the selected book. If so, then it plays at given
-    // time.
     override fun onClickPlay(progressTime: Int) {
         Toast.makeText(this,"Clicked Play", Toast.LENGTH_SHORT).show()
         val currentBook = selectedBookViewModel.getSelectedBook().value
