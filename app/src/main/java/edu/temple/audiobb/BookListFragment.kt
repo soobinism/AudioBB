@@ -28,12 +28,8 @@ class BookListFragment : Fragment() {
 
         val bookViewModel = ViewModelProvider(requireActivity()).get(SelectedBookViewModel::class.java)
 
-        // Using those sweet, sweet lambdas - but an onClickListener will do the job too
         val onClick : (Book) -> Unit = {
-            // Update the ViewModel
                 book: Book -> bookViewModel.setSelectedBook(book)
-            // Inform the activity of the selection so as to not have the event replayed
-            // when the activity is restarted
             (activity as BookSelectedInterface).bookSelected(book)
         }
         with (view as RecyclerView) {
