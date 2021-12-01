@@ -8,11 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
-import android.net.Uri
 import com.squareup.picasso.Picasso
-import java.net.URL
-import android.icu.number.NumberFormatter.with
-import android.icu.number.NumberRangeFormatter.with
 
 class BookDetailsFragment : Fragment() {
 
