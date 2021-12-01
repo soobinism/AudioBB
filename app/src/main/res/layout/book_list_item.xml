@@ -9,8 +9,8 @@
         android:id="@+id/titleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:textSize="24sp"
-        android:typeface="serif"
         tools:text="Title" />
 
     <TextView
