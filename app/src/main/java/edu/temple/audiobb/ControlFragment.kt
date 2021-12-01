@@ -1,4 +1,4 @@
-package edu.temple.audiobbplayer
+package edu.temple.audiobb
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

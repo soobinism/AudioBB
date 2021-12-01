@@ -1,4 +1,4 @@
-package edu.temple.audiobbplayer
+package edu.temple.audiobb
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

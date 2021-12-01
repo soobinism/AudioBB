@@ -8,86 +8,58 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import android.content.Intent
-import android.widget.Button
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 
-private const val ARG_PARAM1 = "param1"
-private const val BOOK_LIST_STATE = "edu.temple.audiobb.BookListFragment.BOOK_LIST_STATE"
+private const val BOOK_LIST = "booklist"
 
 class BookListFragment : Fragment() {
-
-    private lateinit var recyclerView: RecyclerView
-    private var bookList = BookList()
-    private lateinit var bookViewModel: BookViewModel
-    private lateinit var adapter : BookAdapter
-
-    private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        if(it.resultCode == AppCompatActivity.RESULT_OK) {
-            bookList = it.data?.getSerializableExtra(SEARCH_RESULTS) as BookList
-            adapter.updateList(bookList)
-        }
-    }
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            bookList = if (savedInstanceState == null) {
-                it.getSerializable(ARG_PARAM1) as BookList
-            } else {
-                savedInstanceState.getSerializable(BOOK_LIST_STATE) as BookList
-            }
-        }
-
+    private val bookList: BookList by lazy {
+        ViewModelProvider(requireActivity()).get(BookList::class.java)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val layout = inflater.inflate(R.layout.book_list, container, false)
-
-        val launchSearchButton = layout.findViewById<Button>(R.id.launchSearchButton)
-        launchSearchButton.setOnClickListener {
-            val intent = Intent(requireContext(), BookSearchActivity::class.java)
-            launcher.launch(intent)
-        }
-
-        bookViewModel = ViewModelProvider(requireActivity()).get(BookViewModel::class.java)
-        recyclerView = layout.findViewById(R.id.bookListRecyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = BookAdapter(bookList) {
-                position ->  myOnClick(position)
-        }
-        recyclerView.adapter = adapter
-
-        return layout
+    ): View {
+        return inflater.inflate(R.layout.book_list, container, false)
     }
 
-    private fun myOnClick(position: Int) {
-        (activity as EventInterface).selectionMade()
-        bookViewModel.setBook(bookList.get(position))
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val bookViewModel = ViewModelProvider(requireActivity()).get(SelectedBookViewModel::class.java)
+
+        // Using those sweet, sweet lambdas - but an onClickListener will do the job too
+        val onClick : (Book) -> Unit = {
+            // Update the ViewModel
+                book: Book -> bookViewModel.setSelectedBook(book)
+            // Inform the activity of the selection so as to not have the event replayed
+            // when the activity is restarted
+            (activity as BookSelectedInterface).bookSelected(book)
+        }
+        with (view as RecyclerView) {
+            layoutManager = LinearLayoutManager(requireActivity())
+            adapter = BookAdapter (bookList, onClick)
+        }
+    }
+
+    fun bookListUpdated() {
+        view?.apply{
+            (this as RecyclerView).adapter?.notifyDataSetChanged()
+        }
     }
 
     companion object {
+
         @JvmStatic
         fun newInstance(bookList: BookList) =
             BookListFragment().apply {
                 arguments = Bundle().apply {
-                    putSerializable(ARG_PARAM1, bookList)
+                    putSerializable(BOOK_LIST, bookList)
                 }
             }
-
     }
 
-    interface EventInterface {
-        fun selectionMade()
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putSerializable(BOOK_LIST_STATE, bookList)
+    interface BookSelectedInterface {
+        fun bookSelected(book: Book)
     }
 }
